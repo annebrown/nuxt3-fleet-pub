@@ -18,7 +18,7 @@ Open-source, Nuxt V3 Component Library
 
 `PagesNaviTree`  uses `NaviTree` as a helper to produce a navi tree for a Nuxt3 app's `@/pages` content.  Components under `pages/`, whose page meta include `title` and `description`, are used to build the tree.
 
-`Breadcrumbs` returns a breadcrumb string, based on the current route.
+`Breadcrumbs` - For Future Releases - Will return a breadcrumb string, based on current route.
 
 ## Install
 
@@ -78,6 +78,8 @@ import { SourceNaviTree, PagesNaviTree } from '@annebrown.ca/nuxt3-fleet-pub';
 ```
 
 `Breadcrumbs` usage:
+
+For future releases.
 
 ```vue
 <script setup lang="ts">

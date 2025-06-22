@@ -3,8 +3,7 @@
 export default {
   content: [
     './src/**/*.{vue,js,ts}',
-    './src/**/*.css', // Add this to scan your new index.css file as well
-
+    './src/**/*.css',
   ],
   theme: {
     extend: {},

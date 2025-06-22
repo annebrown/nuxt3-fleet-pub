@@ -35,8 +35,6 @@ const props = defineProps<{
 const router = useRouter();
 const pageNavigationLinks = ref<NavigationLink[]>([]);
 
-
-// Parse Nuxt routes into hierarchical NavigationLink
 const buildRouteNavigationTree = (
   routes: ReturnType<typeof router.getRoutes>, // An array of Nuxt route records
   basePrefix: string
@@ -44,12 +42,9 @@ const buildRouteNavigationTree = (
   const treeMap = new Map<string, NavigationLink>();
   const rootNodes: NavigationLink[] = [];
 
-  // Normalize basePrefix for consistent path handling
   const normalizedBasePrefix = basePrefix.endsWith('/') ? basePrefix.slice(0, -1) : basePrefix;
 
-  // First Pass: Create all individual nodes (pages and implicit directories)
   routes.forEach(route => {
-    // Filter routes to only include those under the basePrefix
     if (!route.path.startsWith(normalizedBasePrefix)) {
       return;
     }
@@ -64,7 +59,6 @@ const buildRouteNavigationTree = (
     const label = route.meta?.title as string || cleanPath.split('/').pop() || 'Untitled Page';
     const isLeaf = !route.children || route.children.length === 0; 
 
-    // Route's cleanPath
     let currentNode: NavigationLink;
     if (treeMap.has(cleanPath)) {
         currentNode = treeMap.get(cleanPath)!;
@@ -73,7 +67,7 @@ const buildRouteNavigationTree = (
             label: label,
             to: cleanPath,
             children: [],
-            collapsible: !isLeaf // Default to collapsible if not leaf
+            collapsible: !isLeaf 
         };
         treeMap.set(cleanPath, currentNode);
     }
@@ -99,13 +93,12 @@ const buildRouteNavigationTree = (
       // Direct child of base prefix 
       rootNodes.push(node);
     } else if (treeMap.has(parentPath)) {
-      // This node has a parent in our map, add it as a child
       const parentNode = treeMap.get(parentPath)!;
       parentNode.children = parentNode.children || [];
-      if (!parentNode.children.some(child => child.to === node.to)) { // Avoid duplicates
+      if (!parentNode.children.some(child => child.to === node.to)) { 
         parentNode.children.push(node);
       }
-      parentNode.collapsible = true; // Mark parent as collapsible
+      parentNode.collapsible = true; 
     } else if (fullPath === normalizedBasePrefix && normalizedBasePrefix !== '/') {
         rootNodes.push(node);
     } else if (normalizedBasePrefix === '/' && parentPath === '') {
@@ -117,7 +110,6 @@ const buildRouteNavigationTree = (
       return node.to !== normalizedBasePrefix || normalizedBasePrefix === '/';
   });
 
-  // Sort final tree (dirs, then alpha)
   const sortNodes = (nodes: NavigationLink[]) => {
     nodes.sort((a, b) => {
       const isADir = a.children && a.children.length > 0;
@@ -138,12 +130,10 @@ const buildRouteNavigationTree = (
 };
 
 
-// Fetch and Build Navi
 const buildPageNavigation = async () => {
   const allRoutes = router.getRoutes(); 
   
   const filteredRoutes = allRoutes.filter(route => {
-    // Filter non-page routes (like named routes for modals) and those wo meta
     return route.meta?.title && route.path.startsWith(props.baseRoutePrefix || '/');
   });
 

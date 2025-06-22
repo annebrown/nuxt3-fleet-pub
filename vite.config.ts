@@ -22,7 +22,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
           'vue-router': 'VueRouter',
-          '@nuxt/content': 'NuxtContent', // Good practice for globals if needed
+          '@nuxt/content': 'NuxtContent',
         },
       },
     },

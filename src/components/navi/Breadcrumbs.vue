@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRoute } from "vue-router"; // Explicitly import useRoute if not auto-imported by Nuxt
+import { useRoute } from "vue-router"; 
 
 const route = useRoute();
 
@@ -26,9 +26,7 @@ const breadcrumbLinks = computed(() => {
 
   pathSegments.forEach((segment, index) => {
     links.push({
-      // Capitalize first letter of each segment for label
       label: segment.charAt(0).toUpperCase() + segment.slice(1),
-      // Construct the 'to' path progressively
       to: "/" + pathSegments.slice(0, index + 1).join("/"),
     });
   });
