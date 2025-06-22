@@ -1,0 +1,61 @@
+{
+    "name": "@annebrown.ca/nuxt3-fleet-pub",
+    "version": "0.0.0",
+    "description": "Fleet-Wide, Open-Source, Nuxt 3 Component Library",
+    "private": false,
+    "type": "module",
+    "main": "./dist/nuxt3-fleet-pub.cjs",
+    "module": "./dist/nuxt3-fleet-pub.mjs",
+    "unpkg": "./dist/nuxt3-fleet-pub.umd.cjs",
+    "exports": {
+        ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs",
+        "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/annebrown/nuxt3-fleet-pub.git"
+    },
+    "bugs": {
+        "url": "https://github.com/your-org/nuxt3-fleet-pub/issues"
+    },
+    "keywords": [
+        "vue",
+        "vue3",
+        "component",
+        "ui",
+        "fleet",
+        "nuxt",
+        "nuxt3",
+        "navigation"
+    ],
+    "author": "Anne Brown <anne@browndomain.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test:unit": "vitest",
+        "lint": "eslint . --ext .vue,.js,.jsx,.mjs,.ts,.tsx,.cjs --fix --ignore-path .gitignore",
+        "format": "prettier --write src/"
+    },
+    "devDependencies": {
+        "vue": "^3.4.21",
+        "vite": "^5.0.11",
+        "@vitejs/plugin-vue": "^5.0.0",
+        "typescript": "^5.8.3",
+        "@tsconfig/node22": "^22.0.2",
+        "@vue/tsconfig": "^0.7.0",
+        "vite-plugin-dts": "^4.5.4"
+    },
+    "peerDependencies": {
+        "vue": "^3.4.21",
+        "vue-router": "^4.0.0",
+        "@nuxt/content": "3.5.1"
+    }
+}
